@@ -26,19 +26,25 @@
 		style="width: 200px;height: 6.25rem;text-align: center;line-height: 6.25rem;">
 			Hi cfq
 		</div>
+		
+		//绑定内联样式
+		//: 缩写使用 v-bind
+		//background通过三元运算选择
+		<div
+		:style="{ color: activeColor, fontSize: fontSize + 'px', background: isRed ? '#FF0000' : ''}">
+			hello style
+		</div>
 	</div>
 
-<!--    <div
-        class="static"
-        v-bind:class="{ active: isActive, 'text-danger': hasError }"
-    ></div>
- -->
     <script>
 		var vm = new Vue({
 			el: "#app",
 			data: {
 				isActive: true,
-				isGreen: true
+				isGreen: true,
+				activeColor: '#FFFFFF',
+				fontSize: 30,
+				isRed: true
 			}
 		})
     </script>
