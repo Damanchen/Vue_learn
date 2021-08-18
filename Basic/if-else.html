@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- 使用 CDN 方式引入 Vue -->
+	    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	    <title>Document</title>
+	</head>
+	
+	<body>
+		<div id="app">
+			//if-else会根据 type 的值来选择展示的内容
+			<div v-if="type === 'A'">
+			  A
+			</div>
+			<div v-else-if="type === 'B'">
+			  B
+			</div>
+			<div v-else-if="type === 'C'">
+			  C
+			</div>
+			<div v-else>
+			  Not A/B/C
+			</div>
+			
+			//就算ok的值是false，v-show也会渲染出来，只是style="display: none;"
+			<h1 v-show="ok">hello</h1>
+		</div>
+		
+		<!-- 用 key 管理可复用的元素 -->
+		<div id="app-2">
+			<template v-if="loginType === 'username'">
+			  <label>Username</label>
+			  <input placeholder="Enter your username" key="username-input">
+			</template>
+			<template v-else>
+			  <label>Email</label>
+			  <input placeholder="Enter your email address" key="email-input">
+			</template>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data : {
+					type: "",
+					ok: false
+				}
+			});
+			
+			var vm2 = new Vue({
+				el: "#app-2",
+				data : {
+					loginType: "username"
+				}
+			});
+		</script>
+		<style type="text/css"></style>
+	</body>
+</html>
