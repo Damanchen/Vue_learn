@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 使用 CDN 方式引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+		<div
+		class="test"
+		
+		//普通样式
+		//v-bind:class="{ active: isActive , green: isGreen}"
+		
+		//使用数组的方式进行绑定
+		//v-bind:class="['active', 'green']"
+		
+		//使用三元运算符进行绑定
+		v-bind:class="[ isActive ? 'active' : '', isGreen ? 'green' : '']"
+		
+		style="width: 200px;height: 6.25rem;text-align: center;line-height: 6.25rem;">
+			Hi cfq
+		</div>
+	</div>
+
+<!--    <div
+        class="static"
+        v-bind:class="{ active: isActive, 'text-danger': hasError }"
+    ></div>
+ -->
+    <script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				isActive: true,
+				isGreen: true
+			}
+		})
+    </script>
+	
+	<style>
+		.test{font-size: 3.125rem;}
+		.active{background-color: yellow;}
+		.green{color: green;}
+	</style>
+    
+</body>
+</html>
