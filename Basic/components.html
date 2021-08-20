@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- 使用 CDN 方式引入 Vue -->
+	    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	    <title>Document</title>
+	</head>
+	
+	<body>
+		<div id="app">
+			<!-- @clicknow="clicknow"表示通过事件绑定的方式，去接收到 this.emit 函数所触发的事件 -->
+			<button-counter titles="first cfq: " @clicknow1="clicknow2"></button-counter>
+			<!-- 组件可以任意次数的复用 -->
+			<br />
+			<button-counter titles="seconds: ">
+				<!-- 通过 slot 插入的 html 标签 -->
+				<h4> asda </h4>
+			</button-counter>
+		</div>
+		
+		<script type="text/javascript">
+			//定义组件
+			Vue.component('button-counter', {
+				// 一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝
+				data: function () {
+					return {
+						count: 0
+					}
+				},
+				// 通过 Prop 向子组件传递数据
+				props: ['titles'],
+				// 每个组件必须只有一个根元素，所以在 template中的内容需要用 <div> 包起来
+				// 通过 slot 插槽来插入任意的 html 标签
+				template: '<div><h3>h3</h3><button v-on:click="clickfun">{{ titles }} You clicked me {{ count }} times.</button><slot></slot></div>',
+				methods: {
+					clickfun : function () {
+						this.count++;
+						// this.$emit 用于触发一个事件，第一个参数为事件的名称，第二个为携带的参数
+						this.$emit('clicknow1', this.count);
+					}		
+				}
+			})
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					
+				},
+				// 声明 clicknow 方法
+				methods:{
+					clicknow2: function(e){
+						// 监听子组件事件的执行顺序：触发 -> 绑定 -> 接收执行
+						console.log(e)
+					}
+				}
+			})
+		</script>
+		
+	</body>
+	
+</html>
